@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>가위바위보</title>
+	<link rel="stylesheet" href="./css/reset.css">
+	<link rel="stylesheet" href="./css/layout.css">
+	<link rel="stylesheet" href="./css/content.css">
+	<link rel="stylesheet" href="./css/common.css">
+	<link rel="stylesheet" href="./css/override.css">
+	
+</head>
+<body>
+	<header>
+		가위 바위 보
+	</header>
+	<section>
+	<div>
+		<div>
+			<div class="ndy-com ndy-mt3 ndy-mb3">
+				<span>COM</span>
+			</div>
+			<div>
+				<img id="ndy-com-status" src="./images/computer.png" alt="컴퓨터">
+			</div>
+
+			<div class="ndy-vs ndy-mt3 ndy-mb3">VS</div>
+
+			<div class="ndy-button">
+				<button type="button" value="가위" onclick="gameStart('가위');"><img id="scissors" src="./images/scissors.png"></button>
+				<button type="button" value="바위" onclick="gameStart('바위');"><img id="rock" src="./images/rock.png"></button>
+				<button type="button" value="보" onclick="gameStart('보');"><img id="paper" src="./images/paper.png"></button>
+			</div>
+
+			<div id="ndy-game-result" class="ndy-result ndy-mt3" style="display: none;">
+				<div id="ndy-game-result-text"></div>
+				<button type="button" class="ndy-mt2" onclick="gameReset()">다시 하기</button>
+			
+			</div>
+		</div>
+	</div>
+	</section>
+
+	<script>
+		let isGameStart = false;
+		let myStatus = "";
+		let comStatus= "";
+		let resultText = "비겼습니다.";
+		let statusImg ="";
+
+		function gameReset() {
+			myStatus = '';
+			comStatus = '';
+			resultText = '';
+
+			document.getElementById("ndy-game-result").style.display = 'none';
+			document.getElementById("ndy-com-status").src = './images/computer.png';
+			document.getElementById("ndy-game-result-text").innerHTML = '';
+		}
+
+		function gameStart(value) {
+			myStatus = value;
+			makeComputerStatus();
+			compareResult();
+			isGameStart = true;
+
+			console.log(isGameStart);
+			console.log(myStatus);
+			console.log(comStatus);
+			console.log(resultText);
+
+			document.getElementById("ndy-game-result").style.display = '';
+			document.getElementById("ndy-com-status").src = `./images/${statusImg}`;
+			document.getElementById("ndy-game-result-text").innerHTML = resultText;
+		}
+
+		function makeComputerStatus() {
+
+			const gameItem = ["가위", "바위", "보"];
+
+			let manipulations = [];
+
+			for (let i = 0; i <= 7; i++)  manipulations.push(myStatus); //80%
+
+			if (gameItem[0] !== myStatus) manipulations.push(gameItem[0]);
+			if (gameItem[1] !== myStatus) manipulations.push(gameItem[1]);
+			if (gameItem[2] !== myStatus) manipulations.push(gameItem[2]);
+
+			comStatus = Math.random() * 10;
+			comStatus =manipulations[Math.floor(comStatus)];
+		}
+
+		function compareResult() {
+			if ((myStatus == "가위" && comStatus == "바위") || ((myStatus == "보" && comStatus == "가위")) || ((myStatus == "바위" && comStatus == "보"))) resultText = "졌습니다.";
+
+			else if((myStatus == "가위" && comStatus == "보") || ( (myStatus == "바위" && comStatus == "가위")) || ((myStatus == "보" && comStatus == "바위"))) resultText = "이겼습니다.";
+
+			else resultText = "비겼습니다."
+
+			if(comStatus == "가위") statusImg ="scissors.png";
+			else if (comStatus == "바위") statusImg ="rock.png";
+			else statusImg = "paper.png";
+	
+		}
+	</script>
+</body>
+
+</html>
+

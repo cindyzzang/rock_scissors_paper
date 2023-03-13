@@ -1,0 +1,54 @@
+
+*{
+	text-align: center;
+	font-family: 'Jua', sans-serif;
+}
+
+header{
+	font-size: 50px;
+	font-weight: 800;
+	margin-top: 100px;
+}
+
+.ndy-com, .ndy-vs{
+	font-size: 30px;
+	font-weight: 700;
+}
+
+#ndy-com-status{
+	width: 180px;
+	background-color: rgb(238, 238, 238);
+	padding: 30px;
+	border-radius: 50px;
+}
+.ndy-button button{
+	background-color: rgb(183, 221, 245);
+	border: 0;
+	border-radius: 80px;
+	margin-left: 30px;
+	
+}
+#rock, #scissors, #paper{
+	width: 200px;
+	
+}
+
+.ndy-button button:hover{
+	background-color: rgb(252, 252, 199);
+}
+
+.ndy-result{
+	font-size: 30px;
+	font-weight: 700;
+}
+
+.ndy-result button{
+	font-weight: 700;
+	width: 150px;
+	font-size: 20px;
+	border: 0;
+	border-radius: 10px;
+	background: rgba(255, 207, 231, 0.445);
+	padding: 5px;
+
+}
